@@ -70,8 +70,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         // Display the first 500 characters of the response string.
                         try {
+                            //this will grab the object of namedays
                             JSONObject data = response.getJSONObject("data").getJSONObject("namedays");
-                            textView.setText("Response is: "+ data);
+
+                            //this grabs the string from the JSONobject namedays
+                            //TODO need to replace "us" with a variable for country code
+                            String names = data.getString("us");
+                            textView.setText("Response is: "+ names);
+
+                            //optional, this will list the names as an String array
+                            String[] namesArray = names.split(",");
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             textView.setText("didn't work" + response);
