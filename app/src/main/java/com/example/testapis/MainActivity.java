@@ -25,6 +25,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Button btnGet;
+    //three strings for the user input
+    String inputCountry, inputMonth, inputDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView textView = (TextView) findViewById(R.id.testText);
 
+        //TODO replace this with the user input
+        //temporarily set the country, month and day
+        inputCountry = "us";
+        inputMonth = "7";
+        inputDay = "15";
+
 // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://api.abalin.net/namedays?country=us&month=7&day=15";
+        String url ="https://api.abalin.net/namedays?country="+inputCountry+"&month="+inputMonth+"&day="+inputDay;
         String[] names;
 
 // Request a string response from the provided URL.
@@ -74,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject data = response.getJSONObject("data").getJSONObject("namedays");
 
                             //this grabs the string from the JSONobject namedays
-                            //TODO need to replace "us" with a variable for country code
-                            String names = data.getString("us");
+                            String names = data.getString(inputCountry);
                             textView.setText("Response is: "+ names);
 
                             //optional, this will list the names as an String array
