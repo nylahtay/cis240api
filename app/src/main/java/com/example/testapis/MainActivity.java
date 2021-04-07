@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://api.abalin.net/today?country=ru";
+        String url ="https://api.abalin.net/namedays?country=us&month=7&day=15";
         String[] names;
 
 // Request a string response from the provided URL.
@@ -68,10 +70,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         // Display the first 500 characters of the response string.
                         try {
-                            JSONArray jArry = response.getJSONArray("namedays");
-                            textView.setText("Response is: "+ jArry);
+                            JSONObject data = response.getJSONObject("data").getJSONObject("namedays");
+                            textView.setText("Response is: "+ data);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            textView.setText("didn't work" + response);
+
                         }
                     }
                 }, new Response.ErrorListener() {
