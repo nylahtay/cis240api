@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://dog.ceo/api/breeds/image/random";
+        String url ="https://api.abalin.net/today?country=ru";
 
 // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
