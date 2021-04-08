@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -94,6 +95,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Update the number of days based on what month is selected.
+        spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //check to see if feb
+                if (spinnerMonth.getSelectedItemPosition() == 1)
+                {
+                    //TODO update the spinner day to only show 29 days
+
+                    //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, spinnerDay, R.array.mnthspinner);
+
+                }
+                else {
+                    //else check to see if selected month is one that has 30 days
+
+                    //set april (4), June (6), September (9) and November(11) to be 30day Months
+                    int[] thirdayDayMonths = {4, 6, 9, 11};
+
+                    for (int i = 0; i < thirdayDayMonths.length; i++) {
+                        if (spinnerMonth.getSelectedItemPosition() + 1 == thirdayDayMonths[i]) {
+                            //TODO update the spinnerDay to show 30 days
+                        }
+                        else {
+                            //otherwise set the days to be 31.
+
+                            //TODO update the spinnerDay to show 31 days again
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
