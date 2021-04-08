@@ -95,32 +95,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
         //Update the number of days based on what month is selected.
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //check to see if feb
-                if (spinnerMonth.getSelectedItemPosition() == 1)
+                if (spinnerMonth.getSelectedItemPosition() == 2)
                 {
                     //TODO update the spinner day to only show 29 days
-
-                    //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, spinnerDay, R.array.mnthspinner);
-
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dayspinner29) );
+                    spinnerDay.setAdapter(arrayAdapter);
                 }
+
                 else {
                     //else check to see if selected month is one that has 30 days
 
                     //set april (4), June (6), September (9) and November(11) to be 30day Months
-                    int[] thirdayDayMonths = {4, 6, 9, 11};
+                    int[] thirtyDayMonths = {4, 6, 9, 11};
 
-                    for (int i = 0; i < thirdayDayMonths.length; i++) {
-                        if (spinnerMonth.getSelectedItemPosition() + 1 == thirdayDayMonths[i]) {
-                            //TODO update the spinnerDay to show 30 days
+
+                    //loop through the thrityDayMonth array and see if the current selected month matches one of those values
+                    for (int i = 0; i < thirtyDayMonths.length; i++) {
+                        if (spinnerMonth.getSelectedItemPosition() == thirtyDayMonths[i]) {
+
+                            //update the spinnerDay to show 30 days
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dayspinner30) );
+                            spinnerDay.setAdapter(arrayAdapter);
+
+                            //if we got 30 days, stop the loop or it will replace the data with 31 days as per the else statement
+                            break;
                         }
                         else {
                             //otherwise set the days to be 31.
-
-                            //TODO update the spinnerDay to show 31 days again
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dayspinner) );
+                            spinnerDay.setAdapter(arrayAdapter);
                         }
                     }
                 }
