@@ -171,12 +171,23 @@ public class MainActivity extends AppCompatActivity {
                             //this grabs the JSON string from the namedays object
                             String namesString = data.getString(inputCountry);
 
-                            //set the textView to show the names.
-                            textView.setText(namesString);
-
                             //TODO this code isn't use
                             //optional, this will list the names as an String array
                             String[] namesArray = namesString.split(",");
+                            String formatedNames = "Names:  ";
+
+                            // Grabs every individual name and puts it in the formated string
+                            for (int i = 0; i < namesArray.length; i++){
+                                if (i != namesArray.length - 1){
+                                    formatedNames += namesArray[i] + ", ";
+                                }
+                                else {
+                                    formatedNames += namesArray[i];
+                                }
+                            }
+
+                            //set the textView to show the names.
+                            textView.setText(formatedNames);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
