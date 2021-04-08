@@ -48,16 +48,6 @@ public class MainActivity extends AppCompatActivity {
         //this is the textview for the results.
         textView = (TextView) findViewById(R.id.nameView);
 
-        //TODO THIS IS TEST DATA Delete when done
-        //temporarily set the country, month and day
-        inputCountry = "us";
-        inputMonth = "7";
-        inputDay = "15";
-
-        //TODO This is calling the requestGetNames() with the est data, DELTE when done testing
-        requestGetNames();
-
-
 
         //this will check to see if the spinner Country has been changed
         //on change it should update teh inputCountry code based on what country was selected
@@ -106,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 //check to see if feb
                 if (spinnerMonth.getSelectedItemPosition() == 2)
                 {
-                    //TODO update the spinner day to only show 29 days
+                    //update the spinner day to only show 29 days
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dayspinner29) );
                     spinnerDay.setAdapter(arrayAdapter);
                 }
@@ -183,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
                             //this grabs the JSON string from the namedays object
                             String namesString = data.getString(inputCountry);
 
-                            //TODO this code isn't use
                             //optional, this will list the names as an String array
                             String[] namesArray = namesString.split(",");
                             String formatedNames = "Names:  ";
