@@ -3,7 +3,10 @@ package com.example.testapis;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -23,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     //three strings for the user input
     String inputCountry, inputMonth, inputDay;
 
+    //three spinners
+    Spinner spinnerCountry, spinnerMonth, spinnerDay;
+
     TextView textView;
 
     @Override
@@ -30,20 +36,77 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set the spinners
+        spinnerCountry = findViewById(R.id.cntryspin);
+        spinnerDay = findViewById(R.id.dayspinner);
+        spinnerMonth = findViewById(R.id.mnthspinner);
+
         //set the button
         btnGet = findViewById(R.id.btnGet);
 
         //this is the textview for the results.
         textView = (TextView) findViewById(R.id.nameView);
 
-        //TODO replace this with the user input
+        //TODO THIS IS TEST DATA Delete when done
         //temporarily set the country, month and day
         inputCountry = "us";
         inputMonth = "7";
         inputDay = "15";
 
-        //TODO use the button call the method requestGetNames()
+        //TODO This is calling the requestGetNames() with the est data, DELTE when done testing
         requestGetNames();
+
+
+
+        //this will check to see if the spinner Country has been changed
+        //on change it should update teh inputCountry code based on what country was selected
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (spinnerCountry.getSelectedItemPosition())
+                {
+                    case 0:
+                        inputCountry = "us";
+                        break;
+                    case 1:
+                        inputCountry = "at";
+                        break;
+                    case 2:
+                        inputCountry = "hr";
+                        break;
+                    case 3:
+                        inputCountry = "es";
+                        break;
+                    case 4:
+                        inputCountry = "it";
+                        break;
+                    case 5:
+                        inputCountry = "fr";
+                        break;
+                    default:
+                        inputCountry = "us";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+        //button to send off the request.
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputMonth = spinnerMonth.getSelectedItem().toString();
+                inputDay = spinnerDay.getSelectedItem().toString();
+
+                requestGetNames();
+            }
+        });
     }
 
 
