@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
          */
 
 
-        final TextView textView = (TextView) findViewById(R.id.testText);
+        final TextView textView = (TextView) findViewById(R.id.nameView);
 
         //TODO replace this with the user input
         //temporarily set the country, month and day
